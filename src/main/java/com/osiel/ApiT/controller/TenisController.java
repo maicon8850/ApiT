@@ -4,8 +4,11 @@ import com.osiel.ApiT.model.Tenis;
 import com.osiel.ApiT.service.TenisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/tenis")
@@ -17,5 +20,10 @@ public class TenisController {
     @GetMapping("/aleatorio")
     public Tenis getTenisAleatorio(){
         return tenisService.getTenisAleatorio();
+    }
+
+    @GetMapping("/marca/{marca}")
+    public List<Tenis> getTenisPorMarca(@PathVariable String marca){
+        return tenisService.getTenisPorMarca(marca);
     }
 }

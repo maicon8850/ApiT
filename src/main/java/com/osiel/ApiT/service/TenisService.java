@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class TenisService {
@@ -77,6 +78,12 @@ public class TenisService {
     public Tenis getTenisAleatorio(){
         int index = random.nextInt(tenisList.size());
         return tenisList.get(index);
+    }
+
+    public List<Tenis> getTenisPorMarca(String marca){
+        return tenisList.stream()
+                .filter(tenis -> tenis.getMarca().equalsIgnoreCase(marca))
+                .collect(Collectors.toList());
     }
 
 
