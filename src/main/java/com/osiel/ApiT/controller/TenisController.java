@@ -32,4 +32,9 @@ public class TenisController {
         return tenisService.getTenisPorNome(nome);
 
     }
+    @GetMapping("/nome-aproximado/{nome}/{maxDistance}")
+    public List<Tenis> getTenisNomeAproximado(@PathVariable String nome, @PathVariable int maxDistance) {
+        return tenisService.getTenisPorNomeAproximado(nome, maxDistance);
+    }
+
 }

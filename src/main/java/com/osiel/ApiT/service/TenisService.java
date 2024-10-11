@@ -2,12 +2,12 @@ package com.osiel.ApiT.service;
 
 import com.osiel.ApiT.model.Tenis;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-
 @Service
 public class TenisService {
 
@@ -95,4 +95,11 @@ public class TenisService {
                 .orElse(null); // para caso não encontrar
 
 }
+    public List<Tenis> getTenisPorNomeAproximado(String nome, int maxDistance) { // metodo principal
+        return tenisList.stream() // retorna uma lista de tenis
+                .filter(tenis -> StringUtils.getLevenshteinDistance(tenis.getNome().toLowerCase(), nome.toLowerCase()) <= maxDistance)
+                .collect(Collectors.toList());
+    }
+
+
 }
